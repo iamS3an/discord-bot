@@ -89,9 +89,9 @@ async def on_ready():
         channel3 = client.get_channel(CHANNEL_ID3)
         if channel3:
             await handle_mentions(channel3)
-        channel4 = client.get_channel(CHANNEL_ID4)
-        if channel4:
-            await handle_mentions(channel4)
+        # channel4 = client.get_channel(CHANNEL_ID4)
+        # if channel4:
+        #     await handle_mentions(channel4)
 
         high_price, low_price = get_btc_price()
         if high_price:
