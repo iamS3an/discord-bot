@@ -81,31 +81,28 @@ async def on_ready():
 
     if guild:
         logging.info(f"Server name: {guild}")
-
-        high_price, low_price = get_btc_price()
         
         channel_test = client.get_channel(CHANNEL_TEST)
         if channel_test:
             await handle_mentions(channel_test)
 
+        channel3 = client.get_channel(CHANNEL_ID3)
+        if channel3:
+            await handle_mentions(channel3)
+        channel4 = client.get_channel(CHANNEL_ID4)
+        if channel4:
+            await handle_mentions(channel4)
+
+        high_price, low_price = get_btc_price()
         if high_price:
             channel1 = guild.get_channel(CHANNEL_ID1)
             if channel1:
                 await update_channel(channel1, f"BTC High (1h): ${high_price}", f"Updated BTC High (1h): ${high_price}")
-
         if low_price:
             channel2 = guild.get_channel(CHANNEL_ID2)
             if channel2:
                 await update_channel(channel2, f"BTC Low (1h): ${low_price}", f"Updated BTC Low (1h): ${low_price}")
         
-        channel3 = client.get_channel(CHANNEL_ID3)
-        if channel3:
-            await handle_mentions(channel3)
-
-        channel4 = client.get_channel(CHANNEL_ID4)
-        if channel4:
-            await handle_mentions(channel4)
-
     await client.close()
 
 client.run(TOKEN)
