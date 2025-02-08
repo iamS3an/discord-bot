@@ -18,6 +18,7 @@ def get_bitcoin_price():
     params = {"symbol": "BTCUSDT", "interval": "1h", "limit": 1}
     response = requests.get(url, params=params)
     data = response.json()
+    print(data)
 
     if data:
         high_price = float(data[0][2])
