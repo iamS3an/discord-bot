@@ -7,7 +7,7 @@ This **Discord Bot** enhances the server with automated features, improving comm
 
 ## Features (Continuously Updating)
 
-### Auto Reply to @everyone and @<the group that bot belong>
+### Auto Reply to @everyone and @the_group_that_bot_belong
 - Detects mentions in a channel.
 - Automatically replies with a predefined message.
 

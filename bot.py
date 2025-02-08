@@ -10,9 +10,11 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 GUILD_ID = int(os.getenv("GUILD_ID"))
+CHANNEL_TEST = int(os.getenv("CHANNEL_TEST"))
 CHANNEL_ID1 = int(os.getenv("CHANNEL_ID1"))
 CHANNEL_ID2 = int(os.getenv("CHANNEL_ID2"))
 CHANNEL_ID3 = int(os.getenv("CHANNEL_ID3"))
+CHANNEL_ID4 = int(os.getenv("CHANNEL_ID4"))
 IMAGE_PATH = "at_reply.jpg"
 
 intents = discord.Intents.default()
@@ -81,6 +83,10 @@ async def on_ready():
         logging.info(f"Server name: {guild}")
 
         high_price, low_price = get_btc_price()
+        
+        channel_test = client.get_channel(CHANNEL_TEST)
+        if channel_test:
+            await handle_mentions(channel_test)
 
         if high_price:
             channel1 = guild.get_channel(CHANNEL_ID1)
@@ -95,6 +101,10 @@ async def on_ready():
         channel3 = client.get_channel(CHANNEL_ID3)
         if channel3:
             await handle_mentions(channel3)
+
+        channel4 = client.get_channel(CHANNEL_ID4)
+        if channel4:
+            await handle_mentions(channel4)
 
     await client.close()
 

@@ -34,7 +34,9 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           GUILD_ID: ${{ secrets.GUILD_ID }}
+          CHANNEL_TEST: ${{ secrets.CHANNEL_TEST }}
           CHANNEL_ID1: ${{ secrets.CHANNEL_ID1 }}
           CHANNEL_ID2: ${{ secrets.CHANNEL_ID2 }}
           CHANNEL_ID3: ${{ secrets.CHANNEL_ID3 }}
+          CHANNEL_ID4: ${{ secrets.CHANNEL_ID4 }}
         run: python bot.py
