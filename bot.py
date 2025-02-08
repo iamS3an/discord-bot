@@ -18,22 +18,22 @@ client = discord.Client(intents=intents)
 
 
 def get_bitcoin_price():
-    url = "https://api.binance.com/api/v3/klines"
-    params = {"symbol": "BTCUSDT", "interval": "1h", "limit": 1}
-    
+    url = "https://www.okx.com/api/v5/market/candles"
+    params = {"instId": "BTC-USDT", "bar": "1m", "limit": 60}
+
     try:
         response = requests.get(url, params=params)
-        response.raise_for_status()  # 檢查請求是否成功
+        response.raise_for_status()
         data = response.json()
-        logging.info(f"Received data: {data}")
 
-        if data:
-            high_price = float(data[0][2])
-            low_price = float(data[0][3])
+        if "data" in data and len(data["data"]) > 0:
+            high_price = max(float(candle[2]) for candle in data["data"])
+            low_price = min(float(candle[3]) for candle in data["data"]) 
+            logging.info(f"{high_price}, {low_price}")
             return high_price, low_price
     except requests.exceptions.RequestException as e:
         logging.error(f"Error fetching price: {e}")
-    
+
     return None, None
 
 
