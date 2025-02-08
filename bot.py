@@ -56,6 +56,10 @@ async def on_ready():
                     await channel1.edit(name=new_name)
                 except Exception as e:
                     logging.error(f"Error updating channel 1 name: {e}")
+                try:
+                    await channel1.send(f"Updated BTC High (1h): ${high_price}")
+                except Exception as e:
+                    logging.error(f"Error sending message to channel 1: {e}")
 
         if low_price is not None:
             channel2 = guild.get_channel(CHANNEL_ID2)
@@ -66,6 +70,10 @@ async def on_ready():
                     await channel2.edit(name=new_name)
                 except Exception as e:
                     logging.error(f"Error updating channel 2 name: {e}")
+                try:
+                    await channel2.send(f"Updated BTC Low (1h): ${low_price}")
+                except Exception as e:
+                    logging.error(f"Error sending message to channel 2: {e}")
 
     await client.close()
 
