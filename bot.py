@@ -20,9 +20,9 @@ IMAGE_PATH = "at_reply.jpg"
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
-def get_btc_price():
+def get_ada_price():
     url = "https://www.okx.com/api/v5/market/candles"
-    params = {"instId": "BTC-USDT", "bar": "1m", "limit": 60}
+    params = {"instId": "ADA-USDT", "bar": "1m", "limit": 60}
 
     try:
         response = requests.get(url, params=params)
@@ -93,15 +93,15 @@ async def on_ready():
         # if channel4:
         #     await handle_mentions(channel4)
 
-        high_price, low_price = get_btc_price()
+        high_price, low_price = get_ada_price()
         if high_price:
             channel1 = guild.get_channel(CHANNEL_ID1)
             if channel1:
-                await update_channel(channel1, f"BTC High (1h): ${high_price}", f"Updated BTC High (1h): ${high_price}")
+                await update_channel(channel1, f"ADA High (1h): ${high_price}", f"Updated ADA High (1h): ${high_price}")
         if low_price:
             channel2 = guild.get_channel(CHANNEL_ID2)
             if channel2:
-                await update_channel(channel2, f"BTC Low (1h): ${low_price}", f"Updated BTC Low (1h): ${low_price}")
+                await update_channel(channel2, f"ADA Low (1h): ${low_price}", f"Updated ADA Low (1h): ${low_price}")
         
     await client.close()
 
